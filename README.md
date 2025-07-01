@@ -1,7 +1,7 @@
 # strict-state
-WIP
+# WIP
 
-State machine editing and simulation
+## State machine editing and simulation
 
 Internally uses these projects:
 - Awesome `wails` framework because I want to experiment both in Go and Java/TypeScript.
