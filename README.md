@@ -1,4 +1,5 @@
 # strict-state
+WIP
 State machine editing and simulation
 
 Uses awesome wails framework because I want to experiment both in Go and Java/TypeScript.
