@@ -1,2 +1,2 @@
 # strict-state
-State machine simulation
+State machine editing and simulation
