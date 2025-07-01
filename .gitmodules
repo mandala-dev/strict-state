@@ -1,0 +1,3 @@
+[submodule "state-machine-cat"]
+	path = state-machine-cat
+	url = https://github.com/LemiBijafra/state-machine-cat
