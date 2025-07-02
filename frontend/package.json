@@ -21,18 +21,10 @@
     "@codemirror/lang-javascript": "^6.2.3",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@srsholmes/svelte-code-input": "^0.0.5",
-    "@threlte/core": "^8.0.1",
-    "@threlte/extras": "^9.0.1",
     "@xyflow/svelte": "^0.1.31",
-    "animation-timeline-js": "^2.3.5",
-    "animejs": "^4.0.2",
     "codemirror": "^6.0.1",
-    "jest": "^30.0.3",
-    "prismjs": "^1.29.0",
     "svelte-ace": "^1.0.21",
     "svelte-codemirror-editor": "^1.4.1",
-    "svelte-splitpanes": "^8.0.9",
-    "three": "^0.173.0",
-    "xstate": "^5.20.0"
+    "svelte-splitpanes": "^8.0.9"
   }
 }
