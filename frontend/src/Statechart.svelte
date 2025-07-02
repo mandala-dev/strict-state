@@ -8,18 +8,41 @@
         type Node,
         type Edge,
     } from "@xyflow/svelte";
+    import { onMount } from "svelte";
 
-    import "@xyflow/svelte/dist/style.css"
-    import { statechart } from "./lib/shared.svelte.js";
+    import "@xyflow/svelte/dist/style.css";
+    import {
+        getNodes,
+        getEdges,
+        setNodes,
+        setEdges,
+        initialNodes,
+        initialEdges,
+        sm,
+    } from "./lib/shared.svelte.js";
 
-    //let nodes = $state.raw<Node[]>(initialNodes);
-    //let edges = $state.raw<Edge[]>(initialEdges);
+    function foo() {
+        //alert("foo")
+        //statechart.nodes[0].data.label = "fsdf";
+        //console.log(sm.curstate);
+    }
+
+    let nodes = $state.raw<Node[]>(initialNodes);
+    let edges = $state.raw<Edge[]>(initialEdges);
+
+    onMount(async () => {
+        //console.log($sm.curstate)
+    });
 </script>
 
+<!-- bind:nodes={getNodes, setNodes}
+bind:edges={getEdges, setEdges} -->
+
 <div style="height:100vh;">
-    <SvelteFlow
-        bind:nodes={statechart.nodes}
-        bind:edges={statechart.edges}
+    <button on:click={() => foo()}> Reload </button>
+    <!-- <SvelteFlow
+        bind:nodes
+        bind:edges
         fitView
         minZoom={0.1}
         maxZoom={2.5}
@@ -28,7 +51,7 @@
         <Controls />
         <Background variant={BackgroundVariant.Dots} />
         <MiniMap />
-    </SvelteFlow>
+    </SvelteFlow> -->
 </div>
 
 <style>

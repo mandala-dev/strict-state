@@ -1,12 +1,11 @@
 import fragmentShader from '../fragment.glsl?raw'
 import vertexShader from '../vertex.glsl?raw'
-import smcat from "../../../state-machine-cat/src/parse/index.mts";
+import smcat from "../../../state-machine-cat/src/parse/index.mts"
+
 import {
   type Node,
   type Edge
 } from "@xyflow/svelte";
-
-import { writable } from "svelte/store";
 
 export let shader = $state({
   vertex: vertexShader,
@@ -94,10 +93,6 @@ export let sm = $state({
 
 sm.addParents()
 
-// export let toggleRedraw = () => {
-//   shader.redraw = !shader.redraw
-// }
-
 export const initialNodes: Node[] = [
   {
     id: "1",
@@ -175,7 +170,20 @@ export const initialEdges: Edge[] = [
   { id: "e4b1-4b2", source: "4b1", target: "4b2" },
 ];
 
-// Example:
-//export let statechart = { nodes : writable<Node[]>(initialNodes), edges : writable<Edge[]>(initialEdges)}
+let nodes1 = $state.raw<Node[]>(initialNodes);
+let edges1 = $state.raw<Edge[]>(initialEdges);
 
-export let statechart = { nodes : writable<Node[]>(initialNodes), edges : writable<Edge[]>(initialEdges)}
+export const getNodes = () => nodes1;
+
+export const getEdges = () => edges1;
+
+export const setNodes = (newNodes) => nodes1 = newNodes;
+export const setEdges = (newEdges) => edges1 = newEdges;
+
+// BaseComponent.svelte
+
+//export let statechart = $state({ nodes : writable<Node[]>(initialNodes), edges : writable<Edge[]>(initialEdges)})
+//export let statechart = { nodes : writable<Node[]>(initialNodes), edges : writable<Edge[]>(initialEdges)}
+//export let statechart = { nodes: nodes, edges: edges }
+
+
