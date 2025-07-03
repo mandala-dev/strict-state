@@ -6,7 +6,7 @@
     NodeResizeControl,
   } from '@xyflow/svelte';
  
-  let { data }: NodeProps = $props();
+  let { isConnectable, data }: NodeProps = $props();
 </script>
  
 <NodeResizeControl
@@ -33,6 +33,6 @@
     <line x1="4" y1="4" x2="10" y2="10" />
   </svg>
 </NodeResizeControl>
-<Handle type="target" position={Position.Left} />
+<Handle type="target" position={Position.Left} {isConnectable} />
 <div>{data.label}</div>
-<Handle type="source" position={Position.Right} />
+<Handle type="source" position={Position.Right} {isConnectable} />
