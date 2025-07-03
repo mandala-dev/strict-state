@@ -29,8 +29,7 @@
 
 	const nodeTypes = {
 		selectorNode: ColorSelectorNode,
-		ResizableNodeSelected,
-		CustomResizerNode
+		
 	};
 
 	const initialNodes: Node[] = [
@@ -84,14 +83,17 @@
 		}
 	];
 
-	let { nodes, edges } = $props();
-	nodes = new Array<Node>();
-	edges = new Array<Edge>();
+	let { nodes1, edges1 } = $props();
+	nodes1 = new Array<Node>();
+	edges1 = new Array<Edge>();
 
 	let initPos = { x: 0, y: 0 };
 
 	let dim = 400;
-
+	const nodeDefaults = {
+		sourcePosition: Position.Right,
+		targetPosition: Position.Left,
+  	};
 	function addNodes(
 		statemachine: IExeStateMachine,
 		out: Node[],
@@ -102,19 +104,19 @@
 		// nodes (states)
 		for (let prop = 0; prop != statemachine.states.length; ++prop) {
 			const childDim = parentDim / 2;
-			const childPos = { x: parentPos.x + 10 + prop * 2, y: parentPos.y + 10 };
+			const childPos = { x: parentPos.x + 10 + prop * 2, y: parentPos.y };
 			const id = statemachine.states[prop].name;
 			//console.log(statemachine.states[prop].name)
 			let node = {
 				id: id,
-				//type: 'input',
+				type: 'default',
 				//type: 'ResizableNodeSelected',
-				type: 'CustomResizerNode',
+				//type: 'CustomResizerNode',
 				data: { label: id },
 				position: childPos,
-				sourcePosition: Position.Right,
 				width: childDim,
-				height: childDim
+				height: childDim,
+				...nodeDefaults,
 			};
 			if (parentId) {
 				node.parentId = parentId;
@@ -134,7 +136,7 @@
 		// edges (transitions)
 		if (statemachine.hasOwnProperty('transitions') && statemachine.transitions) {
 			for (let prop = 0; prop != statemachine.transitions.length; ++prop) {
-				edges.push({
+				edges1.push({
 					id: statemachine.transitions[prop].id,
 					source: statemachine.transitions[prop].from,
 					target: statemachine.transitions[prop].to,
@@ -142,11 +144,12 @@
 			}
 		}
 	}
-	addNodes(sm, nodes, initPos, dim, null);
+	addNodes(sm, nodes1, initPos, dim, null);
 
-	//let nodes = $state.raw<Node[]>(initialNodes);
-	//let edges = $state.raw<Edge[]>(initialEdges);
-
+	let nodes = $state.raw<Node[]>(nodes1);
+	let edges = $state.raw<Edge[]>(edges1);
+	console.log(nodes1);
+	console.log(edges1);
 	$inspect(bgColor.current);
 </script>
 
@@ -170,15 +173,5 @@
 		height: 100vh;
 		padding: 0;
 		margin: 0;
-	}
-	.node {
-		width: 100%;
-		height: 100%;
-		background-color: yellow;
-		border-radius: 8px;
-		border: 2px solid black;
-	}
-	.selected {
-		border: 4px solid black;
 	}
 </style>

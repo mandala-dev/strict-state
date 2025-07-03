@@ -45,7 +45,7 @@
   text-align: center;
   padding: 10px;
   font-size: 12px;
-  flex-direction: row;
+  flex-direction: column;
   border: var(--xy-node-border-default);
   color: var(--xy-node-color, var(--xy-node-color-default));
 }
