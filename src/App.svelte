@@ -13,10 +13,8 @@
 
 	import { sm } from './lib/sm-state.svelte';
 
-	import ColorSelectorNode from './ColorSelectorNode.svelte';
 	import ResizableNodeSelected from './ResizableNodeSelected.svelte';
 	import CustomResizerNode from './CustomResizerNode.svelte';
-	import CustomResizer from './CustomResizer.svelte';
 
 	import '@xyflow/svelte/dist/style.css';
 	//import '@../index.css'
