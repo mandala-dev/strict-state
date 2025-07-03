@@ -5,7 +5,6 @@
 ![alt text](https://github.com/LemiBijafra/strict-state/blob/main/screenshot.png?raw=true)
 
 Internally uses these projects:
-- Awesome `wails` framework because I want to experiment both in Go and Java/TypeScript.
 - `xyflow` because it rocks for drawing graphs in JavaScript.
 - Fork of the `state-machine-cat` because it parses SCXML and its own format into an AST object on top of which this project defines its own, executable state machine definition.
 
