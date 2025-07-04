@@ -1,9 +1,6 @@
 import smcat from "../../state-machine-cat/src/parse/index.mts"
 import { startStateMachine, type IExeStateMachine } from "../../state-machine-cat/src/exec/index.mjs"
 
-function createChart(sm : IExeStateMachine) {
-  
-}
 
 export let smSrc = $state({
   text: `
@@ -67,22 +64,26 @@ caa => final: caa => final;
 caa => final: caa => final;
 `})
 
-const ast = smcat.getAST(smSrc.text, null)
 
-export let sm = {
-  addParents: function () {
-    for (var i in this) {
-      if (typeof this[i] == "object") {
-        this[i].addParents = this.addParents;
-        this[i].addParents();
-        this[i].parent = this;
+
+export let sm : IExeStateMachine;
+
+export function updateAst() {
+  const ast = smcat.getAST(smSrc.text, null)
+  sm = {
+    addParents: function () {
+      for (var i in this) {
+        if (typeof this[i] == "object") {
+          this[i].addParents = this.addParents;
+          this[i].addParents();
+          this[i].parent = this;
+        }
       }
-    }
-    return this;
-  },
-  ...ast
+      return this;
+    },
+    ...ast
+  }
+  sm.addParents();
+  startStateMachine(sm);
+  console.log(sm);
 }
-
-sm.addParents()
-startStateMachine(sm)
-console.log(sm)
