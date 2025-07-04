@@ -1,4 +1,3 @@
-
 <script lang="ts">
 	import {
 		SvelteFlow,
@@ -11,19 +10,24 @@
 		Background
 	} from '@xyflow/svelte';
 
-	import { sm } from './lib/sm-state.svelte';
+	import { Pane, Splitpanes } from 'svelte-splitpanes';
+	import JSONTree from './svelte-json-tree/index.ts';
+
+	import { sm, smSrc } from './lib/sm-state.svelte';
+
+	import CodeMirror from 'svelte-codemirror-editor';
 
 	import ResizableNodeSelected from './ResizableNodeSelected.svelte';
 	import CustomResizerNode from './CustomResizerNode.svelte';
 
 	import '@xyflow/svelte/dist/style.css';
 	//import '@../index.css'
-	
+
 	import type { IExeStateMachine } from '../state-machine-cat/src/exec/index.mjs';
 
 	const nodeTypes = {
 		selectorNode: CustomResizerNode,
-		customResizerNode: CustomResizerNode,
+		customResizerNode: CustomResizerNode
 	};
 
 	let { nodes1, edges1 } = $props();
@@ -35,8 +39,8 @@
 	let dim = 400;
 	const nodeDefaults = {
 		sourcePosition: Position.Right,
-		targetPosition: Position.Left,
-  	};
+		targetPosition: Position.Left
+	};
 	function addNodes(
 		statemachine: IExeStateMachine,
 		out: Node[],
@@ -60,7 +64,7 @@
 				data: { label: id },
 				position: childPos,
 				width: childDim,
-				height: childDim,
+				height: childDim
 			};
 			if (parentId) {
 				node.parentId = parentId;
@@ -83,12 +87,12 @@
 				let edge = {
 					id: statemachine.transitions[prop].id,
 					source: statemachine.transitions[prop].from,
-					target: statemachine.transitions[prop].to,
-				}
+					target: statemachine.transitions[prop].to
+				};
 				if (statemachine.transitions[prop].label) {
 					edge.label = statemachine.transitions[prop].label;
 				}
-				edges1.push(edge)
+				edges1.push(edge);
 			}
 		}
 	}
@@ -100,14 +104,68 @@
 	console.log(edges1);
 
 	// setInterval(() => {
-  	// 	console.log(nodes);
+	// 	console.log(nodes);
 	// 	console.log(edges);
 	// }, 10000);
-</script>  
+</script>
 
+<Splitpanes horizontal={true} style="height: 100vh">
+	<Pane>
+		<Splitpanes>
+			<Pane minSize={20}>
+				<CodeMirror bind:value={smSrc.text} />
+			</Pane>
+			<Pane>
+				<JSONTree value={sm} />
+			</Pane>
+		</Splitpanes>
+	</Pane>
+	<Pane>
+		<SvelteFlow bind:nodes bind:edges {nodeTypes} fitView>
+			<div class="updatenode__controls">
+				<button on:click={() => {}}>Update</button>
+			</div>
+			<Background />
+			<Controls />
+			<MiniMap />
+		</SvelteFlow>
+	</Pane>
+</Splitpanes>
 
-<SvelteFlow bind:nodes bind:edges {nodeTypes} fitView>
-  <Background />
-  <Controls />
-  <MiniMap />
-</SvelteFlow>
+<!-- <label>label:</label>
+				<input value={''} />
+
+				<label class="updatenode__bglabel">background:</label>
+				<input value={''} /> -->
+<!-- <div class="updatenode__checkboxwrapper">
+					<label>hidden:</label>
+					<input
+						type="checkbox"
+						checked={nodeHidden}
+						on:input={(evt) => (nodeHidden = evt.target?.checked)}
+					/>
+				</div> -->
+
+<style>
+	:global(.updatenode__controls) {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		z-index: 4;
+		font-size: 12px;
+	}
+
+	:global(.updatenode__controls label) {
+		display: block;
+	}
+
+	:global(.updatenode__bglabel) {
+		margin-top: 10px;
+	}
+
+	:global(.updatenode__checkboxwrapper) {
+		margin-top: 10px;
+		display: flex;
+		align-items: center;
+	}
+</style>
