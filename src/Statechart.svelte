@@ -9,25 +9,21 @@
 		type XYPosition,
 		Background
 	} from '@xyflow/svelte';
-    import ResizableNodeSelected from './ResizableNodeSelected.svelte';
+	import ResizableNodeSelected from './ResizableNodeSelected.svelte';
 	import CustomResizerNode from './CustomResizerNode.svelte';
 	import '@xyflow/svelte/dist/style.css';
 	import type { IExeStateMachine } from '../state-machine-cat/src/exec/index.mjs';
-    import { sm, smSrc, updateAst } from './lib/sm-state.svelte';
+	import { sm, smSrc, updateAst, statechart } from './lib/sm-state.svelte';
 
 	const nodeTypes = {
 		selectorNode: CustomResizerNode,
 		customResizerNode: CustomResizerNode
 	};
-
-	let { nodes1, edges1 } = $props();
-	nodes1 = new Array<Node>();
-	edges1 = new Array<Edge>();
 	let initPos;
 	let dim;
 	function initNodes() {
-		nodes1 = new Array<Node>();
-		edges1 = new Array<Edge>();
+		statechart.n = new Array<Node>();
+		statechart.e = new Array<Edge>();
 		initPos = { x: 0, y: 0 };
 		dim = 400;
 	}
@@ -83,35 +79,35 @@
 				if (statemachine.transitions[prop].label) {
 					edge.label = statemachine.transitions[prop].label;
 				}
-				edges1.push(edge);
+				statechart.e.push(edge);
 			}
 		}
 	}
-	
-	let nodes = $state.raw<Node[]>(nodes1);
-	let edges = $state.raw<Edge[]>(edges1);
-	console.log(nodes1);
-	console.log(edges1);
-	
 	export function update() {
+		console.log(smSrc.triggerUpdate);
 		initNodes();
 		updateAst();
-		addNodes(sm, nodes1, initPos, dim, null);
-		nodes = nodes1;
-		edges = edges1;
+		addNodes(sm, statechart.n, initPos, dim, null);
+		//smSrc.triggerUpdate = !smSrc.triggerUpdate; // why does this work only every second click?
 		smSrc.text = smSrc.text;
 	}
 </script>
 
- {#key smSrc.text}
-<SvelteFlow bind:nodes bind:edges {nodeTypes} fitView>
-	<div class="updatenode__controls">
-		<button onclick={() => {update()}}>Update</button>
-	</div>
-	<Background />
-	<Controls />
-	<MiniMap />
-</SvelteFlow>
+<!-- {#key smSrc.triggerUpdate} -->
+{#key smSrc.text}
+	<SvelteFlow {nodeTypes} bind:nodes={statechart.n} bind:edges={statechart.e} fitView>
+
+		<div class="updatenode__controls">
+			<button
+				onclick={() => {
+					update();
+				}}>Update</button
+			>
+		</div>
+		<Background />
+		<Controls />
+		<MiniMap />
+	</SvelteFlow>
 {/key}
 
 <!-- <label>label:</label>

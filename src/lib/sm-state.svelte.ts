@@ -1,8 +1,12 @@
 import smcat from "../../state-machine-cat/src/parse/index.mts"
 import { startStateMachine, type IExeStateMachine } from "../../state-machine-cat/src/exec/index.mjs"
-
+import {
+		type Node,
+		type Edge,
+	} from '@xyflow/svelte';
 
 export let smSrc = $state({
+  triggerUpdate : false,
   text: `
 a :    entry/ write unit test
        write code
@@ -87,3 +91,7 @@ export function updateAst() {
   startStateMachine(sm);
   console.log(sm);
 }
+
+export let nodes = $state.raw<Node[]>(new Array<Node>());
+export let edges = $state.raw<Edge[]>(new Array<Edge>());
+export let statechart = $state({n: nodes, e: edges} );
