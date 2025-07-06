@@ -17,7 +17,7 @@ You have to clone the repo and update submodules, downloading a ZIP archive will
 
 ## References
 Internally uses these projects:
-- `xyflow` because it rocks for drawing graphs in JavaScript.
+- `Svelte Flow` because it rocks for drawing graphs in JavaScript.
 - Fork of the `state-machine-cat` because it parses SCXML and its own format into an AST object on top of which this project defines its own, executable state machine definition.
 
 # TODOs
