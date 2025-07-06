@@ -9,6 +9,8 @@ WIP
 
 Contributors more than welcome.
 
+If you consider contributing something, please pick some subject from the TODOs list and open a discussion.
+
 ## Running
 You have to clone the repo and update submodules, downloading a ZIP archive will not cut it because of submodules use.
 
@@ -26,18 +28,16 @@ The right pane is a state machine-agnostic, i.e. pure graphical definition of th
 
 The state machine editor should be self-explanatory. For more information on customizing appearance etc. be sure to visit this awesome project's home page: https://svelteflow.dev/
 
-
 ## References
 The following projects are internally used:
 - `Svelte Flow` because it rocks for drawing graphs in JavaScript.
-- Fork of the `state-machine-cat` because it parses SCXML and its own format into an AST object on top of which this project defines its own, executable state machine definition.
+- `state-machine-cat` (its fork) because it parses SCXML and its own format into an AST object on top of which this project defines its own, executable state machine definition.
 
 ## TODOs
 - UML-like CSS.
-- Visual node adding.
+- Visual creation/deletion of states and transitions.
 - Displaying actions.
 - SCXML support.
-- Proper state machine transitions (WIP).
 - Simple simulation UI: fireing events, executing actions and proper handling of transitions.
 - Automatic node arrangement.
 - Drag and drop of state machine and layout text.
