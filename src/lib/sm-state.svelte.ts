@@ -165,7 +165,8 @@ export const nodeTypes = {
 				let edge = {
 					id: statemachine.transitions[prop].id,
 					source: statemachine.transitions[prop].from,
-					target: statemachine.transitions[prop].to
+					target: statemachine.transitions[prop].to,
+          markerEnd: {type: 'arrowclosed'},
 				};
 				if (statemachine.transitions[prop].label) {
 					edge.label = statemachine.transitions[prop].label;
