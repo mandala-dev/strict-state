@@ -20,9 +20,7 @@ You have to clone the repo and update submodules, downloading a ZIP archive will
 
 ## Using
 
-The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/
-
-The short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
+The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/, short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
 
 The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in external file to copy/paste it as needed.
 
