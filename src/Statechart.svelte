@@ -3,17 +3,10 @@
 		SvelteFlow,
 		Controls,
 		MiniMap,
-		Position,
-		type Node,
-		type Edge,
-		type XYPosition,
 		Background
 	} from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
-	import type { IExeStateMachine } from '../state-machine-cat/src/exec/index.mjs';
 	import { sm, smSrc, nodeTypes, updateAst, statechart } from './lib/sm-state.svelte';
-	
-	
 </script>
 
 <!-- {#key smSrc.triggerUpdate} -->
