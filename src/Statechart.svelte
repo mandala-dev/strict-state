@@ -6,7 +6,7 @@
 		Background
 	} from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
-	import { sm, smSrc, nodeTypes, updateAst, statechart } from './lib/sm-state.svelte';
+	import { smSrc, nodeTypes, statechart } from './lib/sm-state.svelte';
 </script>
 
 <!-- {#key smSrc.triggerUpdate} -->

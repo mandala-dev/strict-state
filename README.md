@@ -20,9 +20,11 @@ You have to clone the repo and update submodules, downloading a ZIP archive will
 
 ## Using
 
-The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/, short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
+The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/, a short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
 
-The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in external file to copy/paste it as needed.
+The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in an external file to copy/paste it as needed.
+
+The opening example gets fetched from the `public` folder.
 
 The state machine editor should be self-explanatory. For more information on customizing appearance etc. be sure to visit this awesome project's home page: https://svelteflow.dev/
 
@@ -39,3 +41,4 @@ The following projects are internally used:
 - Simple simulation UI: fireing events, executing actions and proper handling of transitions.
 - Automatic node arrangement.
 - Drag and drop of state machine and layout text.
+- Reading files from the `public` folder and downloading changes.
