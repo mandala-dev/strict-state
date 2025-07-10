@@ -5,9 +5,9 @@ Visual state machine editing and simulation.
 ![alt text](https://github.com/LemiBijafra/strict-state/blob/main/screenshot.png?raw=true)
 
 ## Status
-WIP
+Functional WIP.
 
-Contributors more than welcome.
+Contributors are more than welcome.
 
 If you consider contributing something, please pick some subject from the TODOs list and open a discussion.
 
@@ -37,7 +37,7 @@ The following projects are internally used:
 - UML-like CSS.
 - Visual creation/deletion of states and transitions.
 - Displaying actions.
-- SCXML support.
+- SCXML UI support.
 - Simple simulation UI: fireing events, executing actions and proper handling of transitions.
 - Automatic node arrangement.
 - Drag and drop of state machine and layout text.
