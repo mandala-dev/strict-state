@@ -35,8 +35,9 @@
   </svg>
 </NodeResizeControl>
 <!-- {#each {length: targetHandleCount}} -->
-{#each {length: 3}}
+<!-- {#each {length: 3}} -->
   <Handle type="target" position={Position.Left} {isConnectable} />
-{/each}
+  <Handle type="target" position={Position.Top} {isConnectable} />
+<!-- {/each} -->
 <div>{data.label}</div>
 <Handle type="source" position={Position.Right} {isConnectable} />

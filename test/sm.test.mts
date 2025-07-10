@@ -1,8 +1,9 @@
 import { assert, expect, test } from 'vitest'
-import { startStateMachine, fireEvent} from "../state-machine-cat/src/exec/index.mts"
+import { root, startStateMachine, addParents, fireEvent, IExeStateMachine, IStateWithParent} from "../state-machine-cat/src/exec/index.mts"
 import smcat from "../state-machine-cat/src/parse/index.mts";
+const util = require('util');
 
-const sm = `
+const smSrc = `
 a :    entry/ write unit test
        write code
        exit/ ...,
@@ -60,30 +61,27 @@ caa => final: caa => final;
 # note for caa => final: caa => final
 caa => final: caa => final;
 `;
-let ast = smcat.getAST(sm, null);
 
-let sme = {
-    addParents: function () {
-        for (var i in this) {
-            if (typeof this[i] == "object") {
-                this[i].addParents = this.addParents;
-                this[i].addParents();
-                this[i].parent = this;
-            }
-        }
-        return this;
-    },
-    ...ast
-}
+root.statemachine = smcat.getAST(smSrc, 'smcat')
+addParents(root.statemachine as IExeStateMachine, root);
 
-sme.addParents()
-console.log(ast)
 
-//fireEvent(sm, "a => b")
-//fireEvent(sme, "a => caaa")
-//console.log(sme)
+console.log('curstate');
+//console.log(root.statemachine.curstate);
 
 test('Starting state machine', () => {
-    startStateMachine(sme)
-    assert(sme.curstate.name == 'a', 'Initial state should be "a"')
+    startStateMachine(root.statemachine as IExeStateMachine);
+    assert((root.statemachine as IExeStateMachine).curstate.name == 'a', 'Initial state should be "a"');
+})
+
+test('Transition "a => b"', () => {
+    startStateMachine(root.statemachine as IExeStateMachine);
+    fireEvent(root.statemachine as IExeStateMachine, "a => b");
+    assert((root.statemachine as IExeStateMachine).curstate.name == 'b', 'State should be "b"');
+})
+
+test('Transition "a => b"', () => {
+    startStateMachine(root.statemachine as IExeStateMachine);
+    fireEvent(root.statemachine as IExeStateMachine, "a => caaa");
+    assert((root.statemachine as IExeStateMachine).curstate.name == 'caaa', 'State should be "caaa"');
 })

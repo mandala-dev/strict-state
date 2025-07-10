@@ -1,5 +1,5 @@
 import smcat from "../../state-machine-cat/src/parse/index.mts"
-import { startStateMachine, type IExeStateMachine } from "../../state-machine-cat/src/exec/index.mjs"
+import { root, addParents, startStateMachine, type IExeStateMachine } from "../../state-machine-cat/src/exec/index.mjs"
 
 import {
   SvelteFlow,
@@ -37,23 +37,10 @@ await fetch('./abc.sm.layout')
 export let sm: IExeStateMachine;
 
 export function updateAst(inputType) {
-  const ast = smcat.getAST(smSrc.text, {inputType: inputType.toLowerCase()});
-  sm = {
-    addParents: function () {
-      for (var i in this) {
-        if (typeof this[i] == "object") {
-          this[i].addParents = this.addParents;
-          this[i].addParents();
-          this[i].parent = this;
-        }
-      }
-      return this;
-    },
-    ...ast
-  }
-  sm.addParents();
+  sm = smcat.getAST(smSrc.text, { inputType: inputType.toLowerCase() });
+  root.statemachine = sm;
+  addParents(sm, root);
   startStateMachine(sm);
-  console.log(sm);
 }
 
 export let nodes = $state.raw<Node[]>(new Array<Node>());
@@ -98,11 +85,9 @@ function addNodes(
       width: childDim,
       height: childDim
     };
-    if (statemachine.states[prop].name == 'initial')
-    {
+    if (statemachine.states[prop].name == 'initial') {
       //node.type = 'initialStateNode';
       node.type = 'customResizerNode';
-      console.log('Yeah!');
     }
     else
       node.type = 'customResizerNode';
@@ -138,6 +123,7 @@ function addNodes(
     }
   }
 }
+
 export function recreateGraph(inputType) {
   initNodes();
   updateAst(inputType);
