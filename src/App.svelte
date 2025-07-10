@@ -25,13 +25,11 @@
 	function applyLayoutFromEditor() {
 		//TODO Svelte Flow docs mention some restrictions for manual change of some fields
 		statechart.n = JSON.parse(layout);
-		console.log('apply layout');
 	}
 
 	function applyLayoutRaw(str) {
 		//TODO Svelte Flow docs mention some restrictions for manual change of some fields
 		statechart.n = JSON.parse(str);
-		console.log('apply layout');
 	}
 
 	applyStateMachine();
