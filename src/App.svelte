@@ -3,7 +3,6 @@
 	import Statechart from './Statechart.svelte';
 	import { statechart } from './lib/sm-state.svelte';
 	import { smSrc, recreateGraph } from './lib/sm-state.svelte';
-	import Editor from './Editor.svelte';
 	import { onMount } from 'svelte';
 	import Comm from './Comm.svelte';
 	import { HSplitPane, VSplitPane } from 'svelte-split-pane';
