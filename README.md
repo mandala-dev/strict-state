@@ -18,6 +18,10 @@ You have to clone the repo and update submodules, downloading a ZIP archive will
 
 `npm run dev`
 
+To run some experimental state machine transition tests:
+
+`npm run test sm.test.mts`
+
 ## Using
 
 The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/, a short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
