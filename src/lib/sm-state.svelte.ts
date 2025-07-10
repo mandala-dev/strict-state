@@ -18,7 +18,7 @@ import '@xyflow/svelte/dist/style.css';
 export let smSrc = $state({
   //triggerUpdate: false,
   //inputType: 'scxml',
-  inputType: 'smcat',
+  inputType: 'SMCAT',
   text: '',
   layout: '',
 })
@@ -37,7 +37,7 @@ await fetch('./abc.sm.layout')
 export let sm: IExeStateMachine;
 
 export function updateAst(inputType) {
-  const ast = smcat.getAST(smSrc.text, inputType);
+  const ast = smcat.getAST(smSrc.text, {inputType: inputType.toLowerCase()});
   sm = {
     addParents: function () {
       for (var i in this) {

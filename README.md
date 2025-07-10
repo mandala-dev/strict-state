@@ -22,6 +22,8 @@ You have to clone the repo and update submodules, downloading a ZIP archive will
 
 The left pane hosts the state machine editor. The primary language for defining state machines was borrowed from the `state-machine-cat` project: https://state-machine-cat.js.org/, a short tutorial: https://github.com/sverweij/state-machine-cat/blob/main/README.md#short-tutorial
 
+SCXML is supported as well, also through the `smcat` project.
+
 The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in an external file to copy/paste it as needed.
 
 The opening example gets fetched from the `public` folder.
@@ -37,7 +39,6 @@ The following projects are internally used:
 - UML-like CSS.
 - Visual creation/deletion of states and transitions.
 - Displaying actions.
-- SCXML UI support.
 - Simple simulation UI: fireing events, executing actions and proper handling of transitions.
 - Automatic node arrangement.
 - Drag and drop of state machine and layout text.

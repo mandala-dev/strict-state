@@ -16,8 +16,10 @@
 		return JSON.stringify(statechart.n, null, '   ');
 	});
 
+	const inputTypes = ['SCXML', 'SMCAT'];
+
 	function applyStateMachine() {
-		recreateGraph(smSrc);
+		recreateGraph(smSrc.inputType);
 	}
 
 	function applyLayoutFromEditor() {
@@ -41,10 +43,19 @@
 
 <main>
 	<div class="form-button">
-		<button class="left-button" onclick={() => applyStateMachine()}>Apply State Machine</button>
-		<button class="right-button" onclick={() => applyLayoutFromEditor()}
+		<div style="display: flex">
+			<button class="left-button" onclick={() => applyStateMachine()}>Apply State Machine</button>
+			{#each inputTypes as type (type)}
+				<div>
+					<input type="radio" bind:group={smSrc.inputType} value={type} />
+					{type}
+				</div>
+			{/each}
+			<button class="right-button" onclick={() => applyLayoutFromEditor()}
 			>Apply Layout<i class="icon-right"></i></button
 		>
+		</div>
+		
 	</div>
 
 	<div class="wrapper">
@@ -56,10 +67,10 @@
 					}}
 				>
 					<left slot="left">
-						<textarea style="width: 100%; height: 100%">{smSrc.text}</textarea>
+						<textarea style="width: 100%; height: 100%" bind:value={smSrc.text}></textarea>
 					</left>
 					<right slot="right">
-						<textarea style="width: 100%; height: 100%">{layout}</textarea>
+						<textarea style="width: 100%; height: 100%" bind:value={layout}></textarea>
 					</right>
 				</HSplitPane>
 			</top>
@@ -111,9 +122,8 @@
 	}
 
 	left,
-	right,
-	top,
-	down {
+	right
+	{
 		width: 100%;
 		height: 100%;
 		display: block;

@@ -10,6 +10,7 @@
 </script>
 
 <!-- {#key smSrc.triggerUpdate} -->
+ <!-- <div style:width="100%" style:height="100%"> -->
 {#key smSrc.text}
 	<SvelteFlow {nodeTypes} bind:nodes={statechart.n} bind:edges={statechart.e} fitView>
 		<!-- <div class="updatenode__controls">
@@ -20,6 +21,7 @@
 		<MiniMap />
 	</SvelteFlow>
 {/key}
+<!-- </div> -->
 
 <!-- <label>label:</label>
 				<input value={''} />
