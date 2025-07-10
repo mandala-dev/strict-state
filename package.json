@@ -14,9 +14,10 @@
         "fast-xml-parser": "5.2.5",
         "he": "1.2.0",
         "neotraverse": "0.6.18",
+        "split.js": "^1.6.5",
         "svelte": "^5.28.2",
-        "svelte-codemirror-editor": "^1.4.1",
-        "svelte-splitpanes": "^8.0.9"
+        "svelte-split-pane": "^0.1.2",
+        "ws": "^8.18.3"
     },
     "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^5.0.3",

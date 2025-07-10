@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { Pane, Splitpanes } from 'svelte-splitpanes';
 	import JSONTree from './svelte-json-tree/index.ts';
 	import Statechart from './Statechart.svelte';
 	import { statechart } from './lib/sm-state.svelte';
 	import { smSrc, recreateGraph } from './lib/sm-state.svelte';
-	import CodeMirror from 'svelte-codemirror-editor';
+	import Editor from './Editor.svelte';
 	import { onMount } from 'svelte';
+	import Comm from './Comm.svelte';
+	import { HSplitPane, VSplitPane } from 'svelte-split-pane';
 
 	let layout = $derived.by(() => {
 		//TODO disable updates while dragging?
@@ -16,7 +17,7 @@
 	});
 
 	function applyStateMachine() {
-		recreateGraph();
+		recreateGraph(smSrc);
 	}
 
 	function applyLayoutFromEditor() {
@@ -33,32 +34,64 @@
 
 	applyStateMachine();
 	applyLayoutRaw(smSrc.layout);
+
+	const dividerColor = 'black';
+	const dividerThickness = '20px';
 </script>
 
-<div class="form-button">
-	<button class="left-button" onclick={() => applyStateMachine()}>Apply State Machine</button>
-	<button class="right-button" onclick={() => applyLayoutFromEditor()}
-		>Apply Layout<i class="icon-right"></i></button
-	>
-</div>
+<main>
+	<div class="form-button">
+		<button class="left-button" onclick={() => applyStateMachine()}>Apply State Machine</button>
+		<button class="right-button" onclick={() => applyLayoutFromEditor()}
+			>Apply Layout<i class="icon-right"></i></button
+		>
+	</div>
 
-<Splitpanes horizontal={true} style="height: 100vh">
-	<Pane>
-		<Splitpanes>
-			<Pane minSize={20}>
-				<CodeMirror bind:value={smSrc.text} />
-			</Pane>
+	<div class="wrapper">
+		<VSplitPane>
+			<top slot="top">
+				<HSplitPane
+					updateCallback={() => {
+						console.log('HSplitPane Updated!');
+					}}
+				>
+					<left slot="left">
+						<textarea style="width: 100%; height: 100%">{smSrc.text}</textarea>
+					</left>
+					<right slot="right">
+						<textarea style="width: 100%; height: 100%">{layout}</textarea>
+					</right>
+				</HSplitPane>
+			</top>
+			<down slot="down">
+				<Statechart />
+			</down>
+		</VSplitPane>
+	</div>
+	<!-- <Splitpanes horizontal={true} style="width: 100vw; height: 100vh">
+		<Pane size={30}>
+			<Splitpanes>
+				<Pane>
+					<textarea style="width: 100%; height: 100%">{smSrc.text}</textarea>
+				</Pane>
 
-			<Pane>
-				<CodeMirror bind:value={layout} />
-				<!-- <JSONTree value={layout} /> -->
-			</Pane>
-		</Splitpanes>
-	</Pane>
-	<Pane>
-		<Statechart />
-	</Pane>
-</Splitpanes>
+				<Pane>
+					<textarea style="width: 100%; height: 100%">{layout}</textarea>
+				</Pane>
+			</Splitpanes>
+		</Pane>
+		<Pane>
+			<Splitpanes>
+				<Pane>
+					<Statechart />
+				</Pane>
+				<Pane size={20}>
+					<Comm />
+				</Pane>
+			</Splitpanes>
+		</Pane>
+	</Splitpanes> -->
+</main>
 
 <style>
 	.form-button {
@@ -75,5 +108,21 @@
 
 	.right-button {
 		float: right;
+	}
+
+	left,
+	right,
+	top,
+	down {
+		width: 100%;
+		height: 100%;
+		display: block;
+		text-align: center;
+	}
+	div.wrapper {
+		width: 95%;
+		/* height: 400px; */
+		height: 95vh;
+		margin: auto;
 	}
 </style>

@@ -12,15 +12,21 @@ import {
   Background
 } from '@xyflow/svelte';
 import CustomResizerNode from '../CustomResizerNode.svelte';
+import Statechart_Initial_State from '../Statechart_Initial_State.svelte'
 import '@xyflow/svelte/dist/style.css';
 
 export let smSrc = $state({
   //triggerUpdate: false,
+  //inputType: 'scxml',
+  inputType: 'smcat',
   text: '',
   layout: '',
 })
 
-await fetch('./abc.sm')
+const defSmFile = './abc.sm';
+//const defSmFile = './scxml/simple.scxml';
+
+await fetch(defSmFile)
   .then(r => r.text())
   .then(t => smSrc.text = t)
 
@@ -30,8 +36,8 @@ await fetch('./abc.sm.layout')
 
 export let sm: IExeStateMachine;
 
-export function updateAst() {
-  const ast = smcat.getAST(smSrc.text, null)
+export function updateAst(inputType) {
+  const ast = smcat.getAST(smSrc.text, inputType);
   sm = {
     addParents: function () {
       for (var i in this) {
@@ -56,7 +62,8 @@ export let statechart = $state({ n: nodes, e: edges });
 
 export const nodeTypes = {
   selectorNode: CustomResizerNode,
-  customResizerNode: CustomResizerNode
+  customResizerNode: CustomResizerNode,
+  initialStateNode: Statechart_Initial_State,
 };
 let initPos;
 let dim;
@@ -84,7 +91,6 @@ function addNodes(
       id: id,
       //type: 'default',
       //type: 'ResizableNodeSelected',
-      type: 'customResizerNode',
       //type: 'selectorNode',
 
       data: { label: id },
@@ -92,6 +98,15 @@ function addNodes(
       width: childDim,
       height: childDim
     };
+    if (statemachine.states[prop].name == 'initial')
+    {
+      //node.type = 'initialStateNode';
+      node.type = 'customResizerNode';
+      console.log('Yeah!');
+    }
+    else
+      node.type = 'customResizerNode';
+    node.targetHandleCount = 3;
     if (parentId) {
       node.parentId = parentId;
     }
@@ -123,9 +138,9 @@ function addNodes(
     }
   }
 }
-export function recreateGraph() {
+export function recreateGraph(inputType) {
   initNodes();
-  updateAst();
+  updateAst(inputType);
   addNodes(sm, statechart.n, initPos, dim, null);
   //smSrc.triggerUpdate = !smSrc.triggerUpdate; // why does this work only every second click?
   smSrc.text = smSrc.text;
