@@ -1,7 +1,7 @@
 <script lang="ts">
 	import JSONTree from './svelte-json-tree/index.ts';
 	import Statechart from './Statechart.svelte';
-	import Statechart1 from './Statechart1.svelte';
+	//import Statechart1 from './own-node-editor/Statechart1.svelte';
 	import { statechart } from './lib/sm-state.svelte';
 	import { smSrc, recreateGraph } from './lib/sm-state.svelte';
 	import { onMount } from 'svelte';
@@ -26,7 +26,7 @@
 		//TODO Svelte Flow docs mention some restrictions for manual change of some fields
 		const obj = JSON.parse(layout);
 		statechart.n = obj.nodes;
-		statechart.n = obj.edges;
+		statechart.e = obj.edges;
 	}
 
 	function applyLayoutRaw(str) {

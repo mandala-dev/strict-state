@@ -1,0 +1,168 @@
+{
+   "nodes": [
+      {
+         "id": "Work",
+         "data": {
+            "label": "Work"
+         },
+         "position": {
+            "x": 3.483015663226297,
+            "y": -26.762337567628776
+         },
+         "width": 560,
+         "height": 423,
+         "type": "customResizerNode",
+         "measured": {
+            "width": 560,
+            "height": 423
+         },
+         "selected": false,
+         "dragging": false
+      },
+      {
+         "id": "Work.initial",
+         "data": {
+            "label": "Work.initial"
+         },
+         "position": {
+            "x": 53.29835774630749,
+            "y": 284.93394056240084
+         },
+         "width": 100,
+         "height": 100,
+         "type": "customResizerNode",
+         "parentId": "Work",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": false,
+         "dragging": false
+      },
+      {
+         "id": "Off",
+         "data": {
+            "label": "Off"
+         },
+         "position": {
+            "x": 365.79230398874563,
+            "y": 267.25530911603573
+         },
+         "width": 100,
+         "height": 100,
+         "type": "customResizerNode",
+         "parentId": "Work",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": false,
+         "dragging": false
+      },
+      {
+         "id": "On",
+         "data": {
+            "label": "On"
+         },
+         "position": {
+            "x": 354.905910345592,
+            "y": 100.90368208623346
+         },
+         "width": 100,
+         "height": 100,
+         "type": "customResizerNode",
+         "parentId": "Work",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": false,
+         "dragging": false
+      },
+      {
+         "id": "HistoryPoint",
+         "data": {
+            "label": "HistoryPoint"
+         },
+         "position": {
+            "x": 83.2318167889398,
+            "y": 51.67855124439747
+         },
+         "width": 100,
+         "height": 100,
+         "type": "customResizerNode",
+         "parentId": "Work",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": true,
+         "dragging": false
+      },
+      {
+         "id": "Expecting",
+         "data": {
+            "label": "Expecting"
+         },
+         "position": {
+            "x": 224.90355748265023,
+            "y": -275.8856801412468
+         },
+         "width": 200,
+         "height": 200,
+         "type": "customResizerNode",
+         "measured": {
+            "width": 200,
+            "height": 200
+         },
+         "selected": false,
+         "dragging": false
+      }
+   ],
+   "edges": [
+      {
+         "id": 16,
+         "source": "Work.initial",
+         "target": "HistoryPoint",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 17,
+         "source": "Off",
+         "target": "On",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "Switch"
+      },
+      {
+         "id": 18,
+         "source": "On",
+         "target": "Off",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "Switch"
+      },
+      {
+         "id": 19,
+         "source": "Work",
+         "target": "Expecting",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "Pause"
+      },
+      {
+         "id": 20,
+         "source": "Expecting",
+         "target": "HistoryPoint",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "Resume"
+      }
+   ]
+}

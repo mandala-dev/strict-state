@@ -1,0 +1,20 @@
+<scxml name="Scxml" version="1.0" xmlns="http://www.w3.org/2005/07/scxml">
+	<state id="Work">
+		<transition event="Pause" target="Expecting"/>
+		<state id="Off">
+			<transition event="Switch" target="On"/>
+		</state>
+		<state id="On">
+			<transition event="Switch" target="Off"/>
+		</state>
+		<initial>
+			<transition target="HistoryPoint"/>
+		</initial>
+		<history id="HistoryPoint">
+			<transition target="Off"/>
+		</history>
+	</state>
+	<state id="Expecting">
+		<transition event="Resume" target="HistoryPoint"/>
+	</state>
+</scxml>
