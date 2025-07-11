@@ -14,6 +14,7 @@ import {
 import CustomResizerNode from '../CustomResizerNode.svelte';
 import Statechart_Initial_State from '../Statechart_Initial_State.svelte'
 import '@xyflow/svelte/dist/style.css';
+import { uid } from "../util";
 
 export let canvas = $state({ w: 0, h: 0});
 
@@ -72,12 +73,6 @@ function initNodes() {
   dim = 400;
 }
 
-let uid = 0;
-
-function getUniqueId() {
-  return uid++;
-}
-
 function addNodes(
   statemachine: IExeStateMachine,
   out: Node[],
@@ -125,7 +120,7 @@ function addNodes(
     for (let prop = 0; prop != statemachine.transitions.length; ++prop) {
       let edge = {
         // id: statemachine.transitions[prop].id,  // These can be duplicated which eventually troubles Svelte Flow
-        id: getUniqueId(),
+        id: uid.get(),
         source: fixId(statemachine.transitions[prop].from),
         target: fixId(statemachine.transitions[prop].to),
         markerEnd: { type: 'arrowclosed' },
@@ -139,6 +134,7 @@ function addNodes(
 }
 
 export function recreateGraph(inputType) {
+  uid.reset();  // reset the UID seed
   initNodes();
   updateAst(inputType);
   addNodes(sm, statechart.n, initPos, dim, null);

@@ -30,9 +30,9 @@ The left pane hosts the state machine editor. The primary language for defining 
 
 SCXML is supported as well, also through the `smcat` project.
 
-The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in an external file to copy/paste it as needed.
+The right pane is a state machine-agnostic, i.e. pure graphical definition of the graph, a.k.a. layout. It gets automatically created when applying the state machine (pressing `Apply State Machine` button) and visually editing the graph. However, manual layout changes can be propagated to the graph editor by pressing the `Apply Layout` button. This is especially useful if you want to save the layout in an external file to copy/paste it as needed (check out example files/layouts).
 
-The opening example gets fetched from the `public` folder.
+The opening example gets fetched from the `public` folder. There you will find SCXML and SMCAT examples with captured layouts.
 
 The state machine editor should be self-explanatory. For more information on customizing appearance etc. be sure to visit this awesome project's home page: https://svelteflow.dev/
 
