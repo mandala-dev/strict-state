@@ -15,6 +15,8 @@ import CustomResizerNode from '../CustomResizerNode.svelte';
 import Statechart_Initial_State from '../Statechart_Initial_State.svelte'
 import '@xyflow/svelte/dist/style.css';
 
+export let canvas = $state({ w: 0, h: 0});
+
 export let smSrc = $state({
   //triggerUpdate: false,
   //inputType: 'scxml',
@@ -52,13 +54,28 @@ export const nodeTypes = {
   customResizerNode: CustomResizerNode,
   initialStateNode: Statechart_Initial_State,
 };
-let initPos;
-let dim;
+
+let initPos : XYPosition;
+let dim : number;
+
+// Svelte Flow has some issues with dots in ID names?
+// Apparently not, still keeping this.
+function fixId(id : string) : string {
+  //return id.replace('.', '_');
+  return id;
+}
+
 function initNodes() {
   statechart.n = new Array<Node>();
   statechart.e = new Array<Edge>();
   initPos = { x: 0, y: 0 };
   dim = 400;
+}
+
+let uid = 0;
+
+function getUniqueId() {
+  return uid++;
 }
 
 function addNodes(
@@ -72,14 +89,10 @@ function addNodes(
   for (let prop = 0; prop != statemachine.states.length; ++prop) {
     const childDim = parentDim / 2;
     const childPos = { x: parentPos.x + 10 + prop * 2, y: parentPos.y };
-    const id = statemachine.states[prop].name;
-    //console.log(statemachine.states[prop].name)
-    let node = {
+    // const id = statemachine.states[prop].name;
+    const id = fixId(statemachine.states[prop].name);
+    let node : Node = {
       id: id,
-      //type: 'default',
-      //type: 'ResizableNodeSelected',
-      //type: 'selectorNode',
-
       data: { label: id },
       position: childPos,
       width: childDim,
@@ -91,7 +104,7 @@ function addNodes(
     }
     else
       node.type = 'customResizerNode';
-    node.targetHandleCount = 3;
+    // node.targetHandleCount = 3;
     if (parentId) {
       node.parentId = parentId;
     }
@@ -111,9 +124,10 @@ function addNodes(
   if (statemachine.hasOwnProperty('transitions') && statemachine.transitions) {
     for (let prop = 0; prop != statemachine.transitions.length; ++prop) {
       let edge = {
-        id: statemachine.transitions[prop].id,
-        source: statemachine.transitions[prop].from,
-        target: statemachine.transitions[prop].to,
+        // id: statemachine.transitions[prop].id,  // These can be duplicated which eventually troubles Svelte Flow
+        id: getUniqueId(),
+        source: fixId(statemachine.transitions[prop].from),
+        target: fixId(statemachine.transitions[prop].to),
         markerEnd: { type: 'arrowclosed' },
       };
       if (statemachine.transitions[prop].label) {

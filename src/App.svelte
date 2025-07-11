@@ -1,6 +1,7 @@
 <script lang="ts">
 	import JSONTree from './svelte-json-tree/index.ts';
 	import Statechart from './Statechart.svelte';
+	import Statechart1 from './Statechart1.svelte';
 	import { statechart } from './lib/sm-state.svelte';
 	import { smSrc, recreateGraph } from './lib/sm-state.svelte';
 	import { onMount } from 'svelte';
@@ -12,7 +13,7 @@
 
 		//smSrc.layout = JSON.stringify(statechart.n, null, '   ');
 		//return smSrc.layout;
-		return JSON.stringify(statechart.n, null, '   ');
+		return JSON.stringify({nodes: statechart.n, edges: statechart.e}, null, '   ');
 	});
 
 	const inputTypes = ['SCXML', 'SMCAT'];
@@ -23,12 +24,16 @@
 
 	function applyLayoutFromEditor() {
 		//TODO Svelte Flow docs mention some restrictions for manual change of some fields
-		statechart.n = JSON.parse(layout);
+		const obj = JSON.parse(layout);
+		statechart.n = obj.nodes;
+		statechart.n = obj.edges;
 	}
 
 	function applyLayoutRaw(str) {
 		//TODO Svelte Flow docs mention some restrictions for manual change of some fields
-		statechart.n = JSON.parse(str);
+		const obj = JSON.parse(str);
+		statechart.n = obj.nodes;
+		statechart.e = obj.edges;
 	}
 
 	applyStateMachine();
@@ -49,10 +54,9 @@
 				</div>
 			{/each}
 			<button class="right-button" onclick={() => applyLayoutFromEditor()}
-			>Apply Layout<i class="icon-right"></i></button
-		>
+				>Apply Layout<i class="icon-right"></i></button
+			>
 		</div>
-		
 	</div>
 
 	<div class="wrapper">
@@ -73,6 +77,7 @@
 			</top>
 			<down slot="down">
 				<Statechart />
+				<!-- <Statechart1 /> -->
 			</down>
 		</VSplitPane>
 	</div>
@@ -119,8 +124,7 @@
 	}
 
 	left,
-	right
-	{
+	right {
 		width: 100%;
 		height: 100%;
 		display: block;

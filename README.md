@@ -2,8 +2,10 @@
 Visual state machine editing and simulation.
 
 ## Screenshot
-![alt text](https://github.com/LemiBijafra/strict-state/blob/main/screenshot.png?raw=true)
-
+### SCXML
+![alt text](https://github.com/LemiBijafra/strict-state/blob/main/screenshot_scxml.png?raw=true)
+### SMCAT
+![alt text](https://github.com/LemiBijafra/strict-state/blob/main/screenshot_smcat.png?raw=true)
 ## Status
 Functional WIP.
 

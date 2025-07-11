@@ -1,257 +1,396 @@
-[
-   {
-      "id": "a",
-      "type": "customResizerNode",
-      "data": {
-         "label": "a"
-      },
-      "position": {
-         "x": -509.9040772181346,
-         "y": -24.08656575443608
-      },
-      "width": 113,
-      "height": 49,
-      "measured": {
+{
+   "nodes": [
+      {
+         "id": "a",
+         "type": "customResizerNode",
+         "data": {
+            "label": "a"
+         },
+         "position": {
+            "x": -509.9040772181346,
+            "y": -24.08656575443608
+         },
          "width": 113,
-         "height": 49
+         "height": 49,
+         "measured": {
+            "width": 113,
+            "height": 49
+         },
+         "selected": true,
+         "dragging": false
       },
-      "selected": true,
-      "dragging": false
-   },
-   {
-      "id": "b",
-      "type": "customResizerNode",
-      "data": {
-         "label": "b"
-      },
-      "position": {
-         "x": -1.2889841553949282,
-         "y": -38.658862997512415
-      },
-      "width": 454,
-      "height": 276,
-      "measured": {
+      {
+         "id": "b",
+         "type": "customResizerNode",
+         "data": {
+            "label": "b"
+         },
+         "position": {
+            "x": -1.2889841553949282,
+            "y": -38.658862997512415
+         },
          "width": 454,
-         "height": 276
+         "height": 276,
+         "measured": {
+            "width": 454,
+            "height": 276
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "ba",
-      "type": "customResizerNode",
-      "data": {
-         "label": "ba"
-      },
-      "position": {
-         "x": 29.24853681203357,
-         "y": 9.664715749378104
-      },
-      "width": 100,
-      "height": 100,
-      "parentId": "b",
-      "measured": {
+      {
+         "id": "ba",
+         "type": "customResizerNode",
+         "data": {
+            "label": "ba"
+         },
+         "position": {
+            "x": 29.24853681203357,
+            "y": 9.664715749378104
+         },
          "width": 100,
-         "height": 100
+         "height": 100,
+         "parentId": "b",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "bb",
-      "type": "customResizerNode",
-      "data": {
-         "label": "bb"
-      },
-      "position": {
-         "x": 254.7450885164024,
-         "y": 36.242684060167925
-      },
-      "width": 167,
-      "height": 217,
-      "parentId": "b",
-      "measured": {
+      {
+         "id": "bb",
+         "type": "customResizerNode",
+         "data": {
+            "label": "bb"
+         },
+         "position": {
+            "x": 254.7450885164024,
+            "y": 36.242684060167925
+         },
          "width": 167,
-         "height": 217
+         "height": 217,
+         "parentId": "b",
+         "measured": {
+            "width": 167,
+            "height": 217
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "bba",
-      "type": "customResizerNode",
-      "data": {
-         "label": "bba"
-      },
-      "position": {
-         "x": 40.040447343361365,
-         "y": 43.491220872201474
-      },
-      "width": 98,
-      "height": 43,
-      "parentId": "bb",
-      "measured": {
+      {
+         "id": "bba",
+         "type": "customResizerNode",
+         "data": {
+            "label": "bba"
+         },
+         "position": {
+            "x": 40.040447343361365,
+            "y": 43.491220872201474
+         },
          "width": 98,
-         "height": 43
+         "height": 43,
+         "parentId": "bb",
+         "measured": {
+            "width": 98,
+            "height": 43
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "bbb",
-      "type": "customResizerNode",
-      "data": {
-         "label": "bbb"
-      },
-      "position": {
-         "x": 39.62426840601677,
-         "y": 148.59500464668838
-      },
-      "width": 104,
-      "height": 42,
-      "parentId": "bb",
-      "measured": {
+      {
+         "id": "bbb",
+         "type": "customResizerNode",
+         "data": {
+            "label": "bbb"
+         },
+         "position": {
+            "x": 39.62426840601677,
+            "y": 148.59500464668838
+         },
          "width": 104,
-         "height": 42
+         "height": 42,
+         "parentId": "bb",
+         "measured": {
+            "width": 104,
+            "height": 42
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "bc",
-      "type": "customResizerNode",
-      "data": {
-         "label": "bc"
-      },
-      "position": {
-         "x": 33.24853681203358,
-         "y": 152.2192730527052
-      },
-      "width": 100,
-      "height": 100,
-      "parentId": "b",
-      "measured": {
+      {
+         "id": "bc",
+         "type": "customResizerNode",
+         "data": {
+            "label": "bc"
+         },
+         "position": {
+            "x": 33.24853681203358,
+            "y": 152.2192730527052
+         },
          "width": 100,
-         "height": 100
+         "height": 100,
+         "parentId": "b",
+         "measured": {
+            "width": 100,
+            "height": 100
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "c",
-      "type": "customResizerNode",
-      "data": {
-         "label": "c"
-      },
-      "position": {
-         "x": -451.4694686424546,
-         "y": 207.21449258688915
-      },
-      "width": 280,
-      "height": 233,
-      "measured": {
+      {
+         "id": "c",
+         "type": "customResizerNode",
+         "data": {
+            "label": "c"
+         },
+         "position": {
+            "x": -451.4694686424546,
+            "y": 207.21449258688915
+         },
          "width": 280,
-         "height": 233
+         "height": 233,
+         "measured": {
+            "width": 280,
+            "height": 233
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "ca",
-      "type": "customResizerNode",
-      "data": {
-         "label": "ca"
-      },
-      "position": {
-         "x": 14.335284250621896,
-         "y": 31.41032618547888
-      },
-      "width": 186,
-      "height": 168,
-      "parentId": "c",
-      "measured": {
+      {
+         "id": "ca",
+         "type": "customResizerNode",
+         "data": {
+            "label": "ca"
+         },
+         "position": {
+            "x": 14.335284250621896,
+            "y": 31.41032618547888
+         },
          "width": 186,
-         "height": 168
+         "height": 168,
+         "parentId": "c",
+         "measured": {
+            "width": 186,
+            "height": 168
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "caa",
-      "type": "customResizerNode",
-      "data": {
-         "label": "caa"
-      },
-      "position": {
-         "x": 25.543373719294095,
-         "y": 9.66471574937816
-      },
-      "width": 121,
-      "height": 129,
-      "parentId": "ca",
-      "measured": {
+      {
+         "id": "caa",
+         "type": "customResizerNode",
+         "data": {
+            "label": "caa"
+         },
+         "position": {
+            "x": 25.543373719294095,
+            "y": 9.66471574937816
+         },
          "width": 121,
-         "height": 129
+         "height": 129,
+         "parentId": "ca",
+         "measured": {
+            "width": 121,
+            "height": 129
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "caaa",
-      "type": "customResizerNode",
-      "data": {
-         "label": "caaa"
-      },
-      "position": {
-         "x": 24.670568501243793,
-         "y": 60.40447343361319
-      },
-      "width": 70,
-      "height": 54,
-      "parentId": "caa",
-      "measured": {
+      {
+         "id": "caaa",
+         "type": "customResizerNode",
+         "data": {
+            "label": "caaa"
+         },
+         "position": {
+            "x": 24.670568501243793,
+            "y": 60.40447343361319
+         },
          "width": 70,
-         "height": 54
+         "height": 54,
+         "parentId": "caa",
+         "measured": {
+            "width": 70,
+            "height": 54
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "final",
-      "type": "customResizerNode",
-      "data": {
-         "label": "final"
-      },
-      "position": {
-         "x": 111.57594731676232,
-         "y": 322.39683753219754
-      },
-      "width": 105,
-      "height": 73,
-      "measured": {
+      {
+         "id": "final",
+         "type": "customResizerNode",
+         "data": {
+            "label": "final"
+         },
+         "position": {
+            "x": 111.57594731676232,
+            "y": 322.39683753219754
+         },
          "width": 105,
-         "height": 73
+         "height": 73,
+         "measured": {
+            "width": 105,
+            "height": 73
+         },
+         "selected": false,
+         "dragging": false
       },
-      "selected": false,
-      "dragging": false
-   },
-   {
-      "id": "initial",
-      "type": "customResizerNode",
-      "data": {
-         "label": "initial"
-      },
-      "position": {
-         "x": -782.0283724627251,
-         "y": -86.95615645121683
-      },
-      "width": 100,
-      "height": 42,
-      "measured": {
+      {
+         "id": "initial",
+         "type": "customResizerNode",
+         "data": {
+            "label": "initial"
+         },
+         "position": {
+            "x": -782.0283724627251,
+            "y": -86.95615645121683
+         },
          "width": 100,
-         "height": 42
+         "height": 42,
+         "measured": {
+            "width": 100,
+            "height": 42
+         },
+         "selected": false,
+         "dragging": false
+      }
+   ],
+   "edges": [
+      {
+         "id": 3,
+         "source": "bba",
+         "target": "bbb",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
       },
-      "selected": false,
-      "dragging": false
-   }
-]
+      {
+         "id": 4,
+         "source": "bbb",
+         "target": "bba",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 5,
+         "source": "ba",
+         "target": "bb",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "one"
+      },
+      {
+         "id": 6,
+         "source": "ba",
+         "target": "bc",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "two"
+      },
+      {
+         "id": 10,
+         "source": "caaa",
+         "target": "final",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 11,
+         "source": "a",
+         "target": "caaa",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "a => caaa"
+      },
+      {
+         "id": 12,
+         "source": "initial",
+         "target": "a",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 13,
+         "source": "a",
+         "target": "ba",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 14,
+         "source": "a",
+         "target": "b",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 15,
+         "source": "a",
+         "target": "b",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 16,
+         "source": "a",
+         "target": "b",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "a => b"
+      },
+      {
+         "id": 17,
+         "source": "a",
+         "target": "b",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "a => b"
+      },
+      {
+         "id": 18,
+         "source": "caa",
+         "target": "final",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 19,
+         "source": "caa",
+         "target": "final",
+         "markerEnd": {
+            "type": "arrowclosed"
+         }
+      },
+      {
+         "id": 20,
+         "source": "caa",
+         "target": "final",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "caa => final"
+      },
+      {
+         "id": 21,
+         "source": "caa",
+         "target": "final",
+         "markerEnd": {
+            "type": "arrowclosed"
+         },
+         "label": "caa => final"
+      }
+   ]
+}

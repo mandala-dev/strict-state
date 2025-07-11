@@ -71,17 +71,22 @@ console.log('curstate');
 
 test('Starting state machine', () => {
     startStateMachine(root.statemachine as IExeStateMachine);
-    assert((root.statemachine as IExeStateMachine).curstate.name == 'a', 'Initial state should be "a"');
+    assert(root.statemachine.curstate);
+    assert(root.statemachine.curstate.name == 'a', 'Initial state should be "a"');
 })
 
 test('Transition "a => b"', () => {
     startStateMachine(root.statemachine as IExeStateMachine);
+    assert(root.statemachine.curstate);
     fireEvent(root.statemachine as IExeStateMachine, "a => b");
-    assert((root.statemachine as IExeStateMachine).curstate.name == 'b', 'State should be "b"');
+    assert(root.statemachine.curstate);
+    assert(root.statemachine.curstate.name == 'b', 'State should be "b"');
 })
 
 test('Transition "a => b"', () => {
     startStateMachine(root.statemachine as IExeStateMachine);
+    assert(root.statemachine.curstate);
     fireEvent(root.statemachine as IExeStateMachine, "a => caaa");
-    assert((root.statemachine as IExeStateMachine).curstate.name == 'caaa', 'State should be "caaa"');
+    assert(root.statemachine.curstate);
+    assert(root.statemachine.curstate.name == 'caaa', 'State should be "caaa"');
 })
