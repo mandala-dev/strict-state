@@ -13,7 +13,7 @@
 
 		//smSrc.layout = JSON.stringify(statechart.n, null, '   ');
 		//return smSrc.layout;
-		return JSON.stringify({nodes: statechart.n, edges: statechart.e}, null, '   ');
+		return JSON.stringify({ nodes: statechart.n, edges: statechart.e }, null, '   ');
 	});
 
 	const inputTypes = ['SCXML', 'SMCAT'];

@@ -8,15 +8,18 @@ import {
   Position,
   type Node,
   type Edge,
+  type EdgeTypes,
+  type NodeTypes,
   type XYPosition,
   Background
 } from '@xyflow/svelte';
 import CustomResizerNode from '../CustomResizerNode.svelte';
+import CustomEdge from '../CustomEdge.svelte';
 import Statechart_Initial_State from '../Statechart_Initial_State.svelte'
 import '@xyflow/svelte/dist/style.css';
 import { uid } from "../util";
 
-export let canvas = $state({ w: 0, h: 0});
+export let canvas = $state({ w: 0, h: 0 });
 
 export let smSrc = $state({
   //triggerUpdate: false,
@@ -46,22 +49,31 @@ export function updateAst(inputType) {
   startStateMachine(sm);
 }
 
+export interface Statechart {
+  n: Node[];
+  e: Edge[];
+};
+
 export let nodes = $state.raw<Node[]>(new Array<Node>());
 export let edges = $state.raw<Edge[]>(new Array<Edge>());
-export let statechart = $state({ n: nodes, e: edges });
+export let statechart: Statechart = $state({ n: nodes, e: edges });
 
-export const nodeTypes = {
+export const nodeTypes: NodeTypes = {
   selectorNode: CustomResizerNode,
   customResizerNode: CustomResizerNode,
   initialStateNode: Statechart_Initial_State,
 };
 
-let initPos : XYPosition;
-let dim : number;
+export const edgeTypes: EdgeTypes = {
+  custom: CustomEdge,
+};
+
+let initPos: XYPosition;
+let dim: number;
 
 // Svelte Flow has some issues with dots in ID names?
 // Apparently not, still keeping this.
-function fixId(id : string) : string {
+function fixId(id: string): string {
   //return id.replace('.', '_');
   return id;
 }
@@ -86,7 +98,7 @@ function addNodes(
     const childPos = { x: parentPos.x + 10 + prop * 2, y: parentPos.y };
     // const id = statemachine.states[prop].name;
     const id = fixId(statemachine.states[prop].name);
-    let node : Node = {
+    let node: Node = {
       id: id,
       data: { label: id },
       position: childPos,
@@ -120,14 +132,16 @@ function addNodes(
     for (let prop = 0; prop != statemachine.transitions.length; ++prop) {
       let edge = {
         // id: statemachine.transitions[prop].id,  // These can be duplicated which eventually troubles Svelte Flow
-        id: uid.get(),
+        id: uid.get().toString(), // number 0 would cause trouble, hence strings
         source: fixId(statemachine.transitions[prop].from),
         target: fixId(statemachine.transitions[prop].to),
+        type: 'custom',
         markerEnd: { type: 'arrowclosed' },
+        sourceHandle: "5",
+        targetHandle: "2"
       };
-      if (statemachine.transitions[prop].label) {
+      if (statemachine.transitions[prop].label)
         edge.label = statemachine.transitions[prop].label;
-      }
       statechart.e.push(edge);
     }
   }
@@ -138,6 +152,7 @@ export function recreateGraph(inputType) {
   initNodes();
   updateAst(inputType);
   addNodes(sm, statechart.n, initPos, dim, null);
+
   //smSrc.triggerUpdate = !smSrc.triggerUpdate; // why does this work only every second click?
   smSrc.text = smSrc.text;
 }

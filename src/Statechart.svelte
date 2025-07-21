@@ -1,26 +1,31 @@
 <script lang="ts">
-	import {
-		SvelteFlow,
-		Controls,
-		MiniMap,
-		Background
-	} from '@xyflow/svelte';
+	import { SvelteFlow, Controls, MiniMap, Panel, Background } from '@xyflow/svelte';
 	import '@xyflow/svelte/dist/style.css';
-	import { smSrc, nodeTypes, statechart } from './lib/sm-state.svelte';
+	import { smSrc, nodeTypes, edgeTypes, statechart } from './lib/sm-state.svelte';
+	import { autoLayout } from './auto-layout'
+	function onAutoLayout() {
+		const newStatechart = autoLayout(statechart);
+		statechart.n = newStatechart.n;
+		statechart.e = newStatechart.e;
+	}
 </script>
 
 <!-- {#key smSrc.triggerUpdate} -->
- <!-- <div style:width="100%" style:height="100%"> -->
+<!-- <div style:width="100%" style:height="100%"> -->
 {#key smSrc.text}
-	<SvelteFlow {nodeTypes} bind:nodes={statechart.n} bind:edges={statechart.e} fitView>
+	<SvelteFlow {nodeTypes} {edgeTypes} bind:nodes={statechart.n} bind:edges={statechart.e} fitView>
+		<!-- <Panel position="top-right">
+			<button onclick={onAutoLayout}>tree layout</button>
+		</Panel> -->
 		<!-- <div class="updatenode__controls">
 			<button onclick={() => {update();}}>Update</button>
 		</div> -->
 		<Background />
 		<Controls />
-		<MiniMap />
+		<!-- <MiniMap /> -->
 	</SvelteFlow>
 {/key}
+
 <!-- </div> -->
 
 <!-- <label>label:</label>
